@@ -9,18 +9,13 @@ pub mod bonus {
         let (a, b) = INPUT
             .lines()
             .map(|l| {
-                let mut it = l.split_whitespace();
-                let (l, r) = it
-                    .by_ref()
+                l.split_whitespace()
                     .map(|n| n.parse::<u32>().unwrap())
-                    .next_tuple()
-                    .unwrap();
-
-                assert_eq!(it.count(), 0);
-
-                (l, r)
+                    .tuples()
+                    .exactly_one()
+                    .unwrap()
             })
-            .unzip::<_, _, Vec<u32>, Vec<u32>>();
+            .unzip::<_, _, Vec<_>, Vec<_>>();
 
         a.into_iter()
             .map(|n| n * b.iter().copied().filter(|&n2| n == n2).count() as u32)
@@ -32,16 +27,11 @@ pub fn solution() -> u32 {
     let (mut a, mut b) = INPUT
         .lines()
         .map(|l| {
-            let mut it = l.split_whitespace();
-            let (l, r) = it
-                .by_ref()
+            l.split_whitespace()
                 .map(|n| n.parse::<u32>().unwrap())
-                .next_tuple()
-                .unwrap();
-
-            assert_eq!(it.count(), 0);
-
-            (l, r)
+                .tuples()
+                .exactly_one()
+                .unwrap()
         })
         .unzip::<_, _, Vec<_>, Vec<_>>();
 
